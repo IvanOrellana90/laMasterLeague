@@ -1,0 +1,72 @@
+.img-header {
+    max-height: 30px;
+}
+body {
+    font-weight: 300;
+}
+.media > .media-body.align-self-center {
+    text-align: center;
+}
+.input-score.form-control {
+    max-width: 45px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.tournament-name {
+    margin-top: -5px;
+}
+.logo-team {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    white-space: nowrap;
+    vertical-align: bottom;
+}
+.logo-team img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border: 0 none;
+}
+.tableMensajes td, .tableMensajes th {
+    padding: .572rem;
+    vertical-align: top;
+    border-top: 0px;
+    border-top-color: white;
+    border-bottom: 1px solid #e4eaec;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(228, 234, 236);
+}
+.dashboard .page-header {
+    background-position: center;
+}
+.bets .media .avatar img {
+    padding-top: 10px;
+}
+.gsc-search-button {
+    display: none;
+}
+.cse .gsc-control-wrapper-cse, .gsc-control-wrapper-cse {
+    width: 98% !important;
+}
+.gsc-control-cse.gsc-control-cse-es {
+    margin-left: 30px;
+}
+.overlay-icon .icon {
+    width: 80% !important;
+    height: auto !important;
+}
+.break-word {
+    -ms-word-break: break-all;
+    word-break: break-all;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+.col-lg-12.panel-group-alert {
+    text-align: center;
+    padding: 0px 30px;
+    margin-bottom: -30px;
+}
