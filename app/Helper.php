@@ -5,6 +5,7 @@ use App\Bet;
 use App\User;
 use App\Group;
 use App\Match;
+use App\Like;
 use Illuminate\Support\Facades\DB;
 
 function dateBiggerNow($date)
@@ -277,4 +278,123 @@ function removeUnclosedTags($text)
     $text = $doc->saveHTML();
 
     return $text;
+}
+
+function getPercentageHome($match_id, $total)
+{
+    if($total == 0)
+        return "0%";
+
+    $res = Bet::where('match_id', $match_id)
+        ->whereColumn('home_score', '>' ,'away_score')
+        ->count();
+
+    return round($res/$total*100)."%";
+}
+
+function getPercentageDraw($match_id, $total)
+{
+    if($total == 0)
+        return "0%";
+
+    $res = Bet::where('match_id', $match_id)
+        ->whereColumn('home_score', '=', 'away_score')
+        ->get();
+
+    return round($res->count()/$total*100)."%";
+}
+
+function getPercentageAway($match_id, $total)
+{
+    if($total == 0)
+        return "0%";
+
+    $res = Bet::where('match_id', $match_id)
+        ->whereColumn('home_score', '<' ,'away_score')
+        ->count();
+
+    return round($res/$total*100)."%";
+}
+
+function getMediaGolesLocal($match_id, $total)
+{
+    if($total == 0)
+        return "0";
+
+    $res = Bet::where('match_id', $match_id)
+        ->sum('home_score');
+
+    return round($res/$total,1);
+}
+
+function getMediaGolesVisita($match_id, $total)
+{
+    if($total == 0)
+        return "0";
+
+    $res = Bet::where('match_id', $match_id)
+        ->sum('away_score');
+
+    return round($res/$total,1);
+}
+
+function getNumberHome($match_id)
+{
+    $res = Bet::where('match_id', $match_id)
+    ->whereColumn('home_score', '>' ,'away_score')
+    ->count();
+
+    return $res;
+}
+
+function getNumberDraw($match_id)
+{
+    $res = Bet::where('match_id', $match_id)
+        ->whereColumn('home_score', '=' ,'away_score')
+        ->count();
+
+    return $res;
+}
+
+function getNumberAway($match_id)
+{
+    $res = Bet::where('match_id', $match_id)
+        ->whereColumn('home_score', '<' ,'away_score')
+        ->count();
+
+    return $res;
+}
+
+function getPuntosPromedio($match_id, $total)
+{
+    if($total == 0)
+        return "0";
+
+    $res = Bet::where('match_id', $match_id)
+        ->sum('points');
+
+    return round($res/$total,1);
+}
+
+function countLikes($topic, $topic_id) {
+
+    $res = Like::where('topic', $topic)
+        ->where('topic_id', $topic_id)
+        ->count();
+
+    return $res;
+
+}
+
+function doYouLike($topic, $topic_id) {
+
+    $res = Like::where('user_id', Auth::id())
+        ->where('topic', $topic)
+        ->where('topic_id', $topic_id)
+        ->first();
+
+    if($res != null)
+        return true;
+    else
+        return  false;
 }

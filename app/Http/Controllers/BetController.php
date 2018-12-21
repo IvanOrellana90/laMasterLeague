@@ -13,10 +13,12 @@ class BetController extends Controller
 {
     public function bet($id)
     {
-        $matches = Match::where('tournament_id', $id)->get();
+        $match = Match::where('id', $id)->first();
+        $bets = Bet::where('match_id', $id)->get();
 
         return view('bet.bet', [
-            'matches' => $matches
+            'match' => $match,
+            'bets' => $bets
         ]);
     }
 

@@ -21,32 +21,44 @@
         </div>
         <div class="forum-metas">
             <div class="float-right">
-                <button type="button" class="btn btn-icon btn-pure btn-default">
-                    <i class="icon wb-thumb-up" aria-hidden="true"></i>
-                    <span class="num">{{ $topic->likes }}</span>
-                </button>
+                @if(doYouLike('topic', $topic->id))
+                    <button type="button" class="btn btn-icon btn-pure btn-default">
+                        <i class="icon far fa-thumbs-up blue-800" aria-hidden="true"></i>
+                    </button>
+                @else
+                    <button type="button" class="btn btn-icon btn-pure btn-default giveLikeTopic" name="topic_id" value="{{ $topic->id }}" data-url="{{ route('forum.slidePanel', $topic->id) }}" data-toggle="slidePanel">
+                        <i class="icon far fa-thumbs-up" aria-hidden="true"></i>
+                    </button>
+                @endif
+                <span class="num btn btn-icon btn-pure btn-default">{{ countLikes('topic', $topic->id) }}</span>
             </div>
             <div class="button-group share">
                 Compartir:
                 <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2F{{ URL::to('/') }}&text={{ strip_tags($topic->content) }}" target="_blank" class="btn btn-icon btn-pure btn-default">
-                    <i class="icon bd-twitter" aria-hidden="true"></i>
+                    <i class="icon bd-twitter blue-500" aria-hidden="true"></i>
                 </a>
             </div>
         </div>
     </section>
-    @foreach($topic->replies as $replie)
+    @foreach($topic->replies as $reply)
         <section class="slidePanel-inner-section">
             <div class="forum-header">
-                <span class="name">{{ $replie->user->name }}</span>
-                <span class="time">{{ date('d-m-Y', strtotime($replie->created_at)) }}</span>
+                <span class="name">{{ $reply->user->name }}</span>
+                <span class="time">{{ date('d-m-Y', strtotime($reply->created_at)) }}</span>
             </div>
             <div class="forum-content">
-                <p>{{ $replie->content }}</p>
+                <p>{{ $reply->content }}</p>
                 <div class="float-right">
-                    <button type="button" class="btn btn-icon btn-pure btn-default">
-                        <i class="icon wb-thumb-up" aria-hidden="true"></i>
-                        <span class="num">{{ $replie->likes }}</span>
-                    </button>
+                    @if(doYouLike('reply', $reply->id))
+                        <button type="button" class="btn btn-icon btn-pure btn-default">
+                            <i class="icon far fa-thumbs-up blue-800" aria-hidden="true"></i>
+                        </button>
+                    @else
+                        <button type="button" class="btn btn-icon btn-pure btn-default giveLikeReplie" name="topic_id" value="{{ $reply->id }}" data-url="{{ route('forum.slidePanel', $topic->id) }}" data-toggle="slidePanel">
+                            <i class="icon far fa-thumbs-up" aria-hidden="true"></i>
+                        </button>
+                    @endif
+                    <span class="num btn btn-icon btn-pure btn-default">{{ countLikes('reply', $reply->id) }}</span>
                 </div>
             </div>
         </section>
@@ -60,3 +72,56 @@
         </form>
     </div>
 </div>
+<script>
+    jQuery(document).ready(function(){
+        jQuery('.giveLikeTopic').click(function(e){
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "{{ route('like.storeAjax') }}",
+                method: 'post',
+                data: {
+                    topic: "topic",
+                    topic_id: $(this).val()
+                },
+                success: function(result){
+                    console.log(result);
+                    $(this).click();
+                },
+                error:function(result) {
+                    console.log(result);
+                }
+            });
+        });
+    });
+
+    jQuery(document).ready(function(){
+        jQuery('.giveLikeReplie').click(function(e){
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            jQuery.ajax({
+                url: "{{ route('like.storeAjax') }}",
+                method: 'post',
+                data: {
+                    topic: "reply",
+                    topic_id: $(this).val()
+                },
+                success: function(result){
+                    console.log(result);
+                    $(this).click();
+                },
+                error:function(result) {
+                    console.log(result);
+                }
+            });
+        });
+    });
+</script>

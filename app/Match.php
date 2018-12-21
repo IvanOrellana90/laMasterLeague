@@ -25,4 +25,9 @@ class Match extends Model
     {
         return $this->belongsTo('App\Stadium');
     }
+
+    public function bets()
+    {
+        return $this->hasMany('App\Bet');
+    }
 }

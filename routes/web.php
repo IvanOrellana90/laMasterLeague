@@ -104,6 +104,10 @@ Route::get('/markAsRead', function (){
 Route::get('/chat', 'UserController@chat')->name('chat')->middleware('auth');
 Route::get('/chatMessage/{id}', 'UserController@chatMessage')->name('chatMessage')->middleware('auth');
 
+// LIKE
+
+Route::post('/like/storeAjax','LikeController@storeAjax')->name('like.storeAjax')->middleware('auth');
+
 // SPECIAL EVENT
 
 Route::get('/evento-especial/felicitaciones/evento1', 'UserController@specialEvent')->name('specialEvent1')->middleware('auth');

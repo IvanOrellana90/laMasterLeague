@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta name="description" content="bootstrap admin template">
     <meta name="author" content="">
+    <meta name="_token" content="{{ csrf_token() }}" />
 
     <title>La MasterLeague | {{$view_name}}</title>
 
@@ -256,9 +257,7 @@
 
 <script>
     var options = {
-        valueNames: ['category', 'topic', 'author'],
-        page: 3,
-        pagination: true
+        valueNames: ['category', 'topic', 'author']
     };
 
     var userList = new List('test-list', options);

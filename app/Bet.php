@@ -12,4 +12,9 @@ class Bet extends Model
     {
         return $this->belongsTo('App\Match');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

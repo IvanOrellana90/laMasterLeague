@@ -27,7 +27,7 @@
                             Todos los Partidos
                         </a>
                     </li>
-                    <li class="dropdown nav-item" role="presentation">
+                    <li id="dropdownJornadas" class="dropdown nav-item" role="presentation">
                         <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" aria-expanded="false">Jornadas </a>
                         <div class="dropdown-menu" role="menu">
                             @foreach($tournament->matches->groupBy('round') as $matchesGroup)
@@ -100,6 +100,9 @@
                                                 @endif
                                             </div>
                                         </div>
+                                        <div class="pl-0 pl-sm-20 mt-15 mt-sm-0 align-self-center">
+                                            <a href="{{ route('bet', $match->id) }}" class="btn btn-outline btn-primary btn-sm" >Ver</a>
+                                        </div>
                                     </div>
                                 </li>
                             @endforeach
@@ -160,6 +163,9 @@
                                                         <i class="bg-red-800"></i>
                                                     @endif
                                                 </div>
+                                            </div>
+                                            <div class="pl-0 pl-sm-20 mt-15 mt-sm-0 align-self-center">
+                                                <a href="{{ route('bet', $match->id) }}" class="btn btn-outline btn-primary btn-sm" >Ver</a>
                                             </div>
                                         </div>
                                     </li>

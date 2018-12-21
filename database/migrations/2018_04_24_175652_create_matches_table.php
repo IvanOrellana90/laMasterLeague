@@ -18,7 +18,7 @@ class CreateMatchesTable extends Migration
             $table->string('round');
             $table->integer('tournament_id');
             $table->dateTime('date');
-            $table->string('stadium_id')->nullable();
+            $table->string('stadium_id')->default(5000);
             $table->integer('home_team')->nullable();
             $table->integer('away_team')->nullable();
             $table->string('group')->nullable();

@@ -81,6 +81,9 @@
                                             @endif
                                         </div>
                                     </div>
+                                    <div class="pl-0 pl-sm-20 mt-15 mt-sm-0 align-self-center">
+                                        <a href="{{ route('bet', $match->id) }}" class="btn btn-outline btn-primary btn-sm" >Ver</a>
+                                    </div>
                                 </div>
                             </form>
                         </li>

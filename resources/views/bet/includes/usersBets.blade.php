@@ -1,7 +1,7 @@
 <!-- Primer tab TODOS LOS PARTIDOS -->
 <ul class="list-group list">
     @php($flag = true)
-    @foreach($user->bets->sortByDesc('created_at') as $bet )
+    @foreach($bets->sortByDesc('created_at') as $bet )
         @if(!dateBiggerNow($bet->match->date))
             @php($flag = false)
             <li id="{{ $bet->match['i'] }}" class="list-group-item">
@@ -25,23 +25,20 @@
                         <input class="input-score form-control" maxlength="2" name="home_score" value="{{ $bet->home_score }}" disabled>
                     </div>
                     <div class="media-body align-self-center">
-                        <p>
-                            <i class="icon icon-color wb-map" aria-hidden="true"></i>
-                            @if($bet->match->stadium_id != null)
-                                {{ $bet->match->stadium->name }}
-                            @elseif($bet->match->homeTeam['stadium_id'] != null)
-                                {{ $bet->match->homeTeam }}
+                        <p class="text-primary">
+                            <i class="icon icon-color fa fa-user" aria-hidden="true"></i>
+                            @if($bet->match->finished)
+                                <a href="{{ route('user', $bet->user->id) }}">
+                                    {{ $bet->user->name }}
+                                </a>
+                                <p class="username" style="display: none;">{{ $bet->user->name }}</p>
                             @else
                                 No definido
                             @endif
                         </p>
                         <h6 class="mt-0 mb-5">
-                            {{ date('d-m-Y', strtotime($bet->match->date)) }} <br>
-                            @if($bet->match->finished)
-                                <small>{{ $bet->match->home_score. " - " .$bet->match->away_score }}</small>
-                            @else
-                                <small>{{ date('H:i', strtotime($bet->match->date)) }}</small>
-                            @endif
+                            {{ date('d-m-Y', strtotime($bet->updated_at)) }} <br>
+                            {{ date('H:i', strtotime($bet->updated_at)) }}
                         </h6>
                         @if($bet->match->finished)
                             @if($bet->points > 3)
@@ -74,16 +71,13 @@
                             @endif
                         </div>
                     </div>
-                    <div class="pl-0 pl-sm-20 mt-15 mt-sm-0 align-self-center">
-                        <a href="{{ route('bet', $bet->match->id) }}" class="btn btn-outline btn-primary btn-sm" >Ver</a>
-                    </div>
                 </div>
             </li>
         @endif
     @endforeach
     @if($flag)
         <li class="list-group-item">
-            <p>El usuario no ha ingresado apuestas todavía</p>
+            <p>No se han ingresa apuestas para este encuentro</p>
         </li>
     @endif
 </ul>
