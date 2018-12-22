@@ -32,6 +32,12 @@
                             <span class="site-menu-title">Polémicas</span>
                         </a>
                     </li>
+                    <li class="site-menu-item">
+                        <a href="{{ route('legends') }}">
+                            <i class="site-menu-icon fas fa-medal" aria-hidden="true"></i>
+                            <span class="site-menu-title">Leyendas</span>
+                        </a>
+                    </li>
                     <li class="site-menu-category">MasterLeague</li>
                     <li class="site-menu-item has-sub">
                         <a href="{{ route('bets') }}">

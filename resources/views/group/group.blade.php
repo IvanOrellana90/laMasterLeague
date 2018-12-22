@@ -28,8 +28,8 @@
                                     <i class="icon fa fa-trophy" aria-hidden="true"></i>Ranking</a>
                                 <a class="list-group-item" data-toggle="tab" href="#exampleTabsOne" aria-controls="exampleTabsOne" role="tab">
                                     <i class="icon fa fa-calendar" aria-hidden="true"></i>La Fecha</a>
-                                <a class="list-group-item" data-toggle="tab" href="#exampleTabsThree" aria-controls="exampleTabsThree" role="tab">
-                                    <i class="icon fa fa-comments" aria-hidden="true"></i>Galería</a>
+                                <!-- <a class="list-group-item" data-toggle="tab" href="#exampleTabsThree" aria-controls="exampleTabsThree" role="tab">
+                                    <i class="icon fa fa-comments" aria-hidden="true"></i>Galería</a> -->
                                 <a class="list-group-item" data-toggle="tab" href="#exampleTabsFour" aria-controls="exampleTabsFour" role="tab">
                                     <i class="icon fa fa-bell" aria-hidden="true"></i>Pendientes</a>
                                 @if($user->id == $group->user->id)
@@ -70,9 +70,7 @@
                 <div class="tab-pane active" id="exampleTabsOne" role="tabpanel">
                     @include('group.ranking')
                 </div>
-                <div class="tab-pane" id="exampleTabsThree" role="tabpanel">
-                    @include('group.messages')
-                </div>
+                <!-- <div class="tab-pane" id="exampleTabsThree" role="tabpanel"></div> -->
                 <div class="tab-pane" id="exampleTabsFour" role="tabpanel">
                     @include('group.pending')
                 </div>

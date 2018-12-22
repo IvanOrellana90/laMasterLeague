@@ -76,6 +76,10 @@ Route::post('/group/storeInvitations', 'GroupController@storeInvitations')->name
 Route::get('/group/confirmGroup/{id}', 'GroupController@confirmGroup')->name('group.confirmGroup')->middleware('auth');
 Route::get('/group/deleteInvitation/{id}', 'GroupController@deleteInvitation')->name('group.deleteInvitation')->middleware('auth');
 
+// LEGENDS
+
+Route::get('/legends','LegendController@legends')->name('legends')->middleware('auth');
+
 // MESSAGE
 
 Route::post('/message/store','MessageController@store')->name('message.store')->middleware('auth');

@@ -4,7 +4,8 @@
             <i class="icon fa fa-users bg-red-600 white icon-circle" aria-hidden="true"></i>
         </div>
         <div class="media-body">
-            <p class="media-heading name"><strong>{{ $notification->data['user']['name'] }}</strong> eliminó el grupo <br> <strong>{{ $notification->data['group']['name']}}</strong></p>
+            <p class="media-heading name"><span class="blue-500">{{ $notification->data['user']['name'] }}</span> eliminó el grupo <br>
+                <span class="blue-500">{{ $notification->data['group']['name']}}</span></p>
             <time class="media-meta date" datetime="{{ $notification->created_at }}">{{ date('d-m-Y', strtotime($notification->created_at)) }}</time>
         </div>
     </div>

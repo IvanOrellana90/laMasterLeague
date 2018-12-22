@@ -6,6 +6,7 @@ use App\User;
 use App\Group;
 use App\Match;
 use App\Like;
+use App\Legend;
 use Illuminate\Support\Facades\DB;
 
 function dateBiggerNow($date)
@@ -397,4 +398,14 @@ function doYouLike($topic, $topic_id) {
         return true;
     else
         return  false;
+}
+
+function isLeyenda($user_id)
+{
+    $res = Legend::where('id', $user_id)->first();
+
+    if($res != null)
+        return false;
+    else
+        return true;
 }

@@ -154,6 +154,7 @@
     <script src="{{ URL::to('global/js/Plugin/animate-list.js') }}"></script>
     <script src="{{ URL::to('assets/js/Site.js') }}"></script>
     <script src="{{ URL::to('assets/js/App/Documents.js') }}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 
     <script>
         var monkeyList = new List('test-list', {

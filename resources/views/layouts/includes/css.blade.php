@@ -17,7 +17,7 @@
 @yield('css-plugins')
 
 <!-- Fonts -->
-<link rel="stylesheet" href="{!! url('') !!}/global/fonts/font-awesome/font-awesome.css">
+<link rel="stylesheet" href="{!! url('') !!}/global/fonts/font-awesome-pro/css/all.css">
 <link rel="stylesheet" href="{!! url('') !!}/global/fonts/web-icons/web-icons.min.css">
 <link rel="stylesheet" href="{!! url('') !!}/global/fonts/brand-icons/brand-icons.min.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>

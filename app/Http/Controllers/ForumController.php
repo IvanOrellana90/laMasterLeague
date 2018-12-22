@@ -49,9 +49,16 @@ class ForumController extends Controller
             $mensaje = "Comentario ingresado correctamente!";
             $class = "success";
 
-            $reply->topic->user->notify(new RepliedToTopic($reply));
+            // Actualizar topic para mostrar ultimos actualizados primeros en el foro
 
-            return redirect()->route('forum')->with(['message' => $mensaje, 'class' => $class]);
+            $topic = Topic::where('id', $reply->topic->id)->first();
+            $topic->updated_at = $reply->created_at;
+
+            if($topic->save()) {
+                $reply->topic->user->notify(new RepliedToTopic($reply));
+
+                return redirect()->route('forum')->with(['message' => $mensaje, 'class' => $class]);
+            }
         }
 
         return redirect()->route('forum')->with(['message' => $mensaje, 'class' => $class]);

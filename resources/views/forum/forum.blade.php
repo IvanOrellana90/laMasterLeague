@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="{{ URL::to('/global/vendor/toastr/build/toastr.min.css') }}">
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="{!! url('') !!}/global/fonts/font-awesome/font-awesome.css">
+    <link rel="stylesheet" href="{!! url('') !!}/global/fonts/font-awesome-pro/css/all.css">
     <link rel="stylesheet" href="{!! url('') !!}/global/fonts/web-icons/web-icons.min.css">
     <link rel="stylesheet" href="{!! url('') !!}/global/fonts/brand-icons/brand-icons.min.css">
     <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
@@ -106,7 +106,7 @@
             <div class="tab-panel animation-fade active" id="forum-newest" role="tabpanel">
                 <table class="table is-indent">
                     <tbody class="list">
-                    @foreach($topics as $topic)
+                    @foreach($topics->sortByDesc('updated_at') as $topic)
                         <tr data-url="{{ route('forum.slidePanel', $topic->id) }}" data-toggle="slidePanel" >
                             <td class="pre-cell"></td>
                             <td class="cell-60 responsive-hide">

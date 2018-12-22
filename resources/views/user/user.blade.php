@@ -18,6 +18,11 @@
                     <!-- Page Widget -->
                     <div class="card card-shadow text-center">
                         <div class="card-block">
+                            @if(isLeyenda($user->id))
+                                <div class="ribbon ribbon-vertical ribbon-bookmark ribbon-warning">
+                                    <span class="ribbon-inner"><i class="icon fa fa-star" aria-hidden="true"></i></span>
+                                </div>
+                            @endif
                             <a class="avatar avatar-lg" style="cursor: pointer;" data-target="#exampleNiftyFadeScale" data-toggle="modal">
                                 <img src="{{ URL::to('img/avatars') }}/{{ $user->avatar->img }}" alt="...">
                             </a>

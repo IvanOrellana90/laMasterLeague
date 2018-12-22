@@ -81,6 +81,13 @@
                                     @foreach(auth()->user()->unreadNotifications as $notification)
                                         @include('layouts.notifications.'.snake_case(class_basename($notification->type)))
                                     @endforeach
+                                    @if(count(auth()->user()->unreadNotifications) == 0)
+                                        <a class="list-group-item dropdown-item" href="" role="menuitem">
+                                            <div class="media">
+                                                <p pr-10>No tiene notificaciones nuevas</p>
+                                            </div>
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
